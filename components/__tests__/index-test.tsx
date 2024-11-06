@@ -46,4 +46,35 @@ it('validates password', () => {
     fireEvent.press(button);
     expect(Alert.alert).toHaveBeenCalledWith('Inicio de sesión incorrecto', 'La contraseña debe tener al menos 8 caracteres');
     });
+
+it('validates empty fields', () => {
+        render(<Index />);
+        const button = screen.getByText('Iniciar Sesión');
+        fireEvent.press(button);
+        expect(Alert.alert).toHaveBeenCalledWith('Inicio de sesión incorrecto', 'Los campos no pueden estar vacíos');
+    });
+    
+it('validates password without uppercase letter', () => {
+        render(<Index />);
+        const passwordInput = screen.getByPlaceholderText('Contraseña');
+        const emailInput = screen.getByPlaceholderText('Email');
+        const button = screen.getByText('Iniciar Sesión');
+        fireEvent.changeText(emailInput, 'test@example.com');
+        fireEvent.changeText(passwordInput, 'contrasennn');
+        fireEvent.press(button);
+        expect(Alert.alert).toHaveBeenCalledWith('Inicio de sesión incorrecto', 'La contraseña debe tener al menos una letra mayúscula');
+    });
+    
+    
+it('successful login', () => {
+        render(<Index />);
+        const passwordInput = screen.getByPlaceholderText('Contraseña');
+        const emailInput = screen.getByPlaceholderText('Email');
+        const button = screen.getByText('Iniciar Sesión');
+        fireEvent.changeText(passwordInput, 'ContraseñaCorrecta1!');
+        fireEvent.changeText(emailInput, 'test@example.com');
+        fireEvent.press(button);
+        expect(Alert.alert).toHaveBeenCalledWith('Inicio de sesión correcto', 'Ya puedes iniciar sesión');
+    });
+    
 });
