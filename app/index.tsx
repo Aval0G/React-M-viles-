@@ -108,6 +108,9 @@ export default function Index() {
       <RegisterButton onPress={() => router.push("/register")}>
         <TextS>Registrarse</TextS>
       </RegisterButton>
+      <RegisterButton onPress={() => router.push("/home")}>
+        <TextS>Home</TextS>
+      </RegisterButton>
     </MainContainer>
   );
 }
