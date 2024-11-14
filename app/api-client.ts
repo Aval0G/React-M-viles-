@@ -3,6 +3,8 @@ import { ArtistResource } from "@/types/artist";
 const API_KEY = "f3c9d7ad73bb6c3e26173ce27b328c3e";
 const URL = `http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=spain&api_key=${API_KEY}&format=json`;
 
+// http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=spain&api_key=f3c9d7ad73bb6c3e26173ce27b328c3e&format=json
+
 function getMusicData() {
     return fetch(URL, {
         method: 'GET',
@@ -21,7 +23,9 @@ function getMusicData() {
     .then(artists => artists.map((artist: ArtistResource) => ({
         id: artist.mbid,
         name: artist.name,
-        image: artist.image[0]['#text']
+        image: artist.image[0]['#text'],
+        listeners: artist.listeners,
+        mbid: artist.mbid
     })))
     .catch(error => {
         console.error("An error occurred while fetching music data:", error);

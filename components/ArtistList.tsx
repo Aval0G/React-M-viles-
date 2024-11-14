@@ -9,14 +9,14 @@ const router = useRouter();
 
 const handlePress = (artist:any) => router.push({
 pathname: "/ArtistDetailView",
-params: { id: artist.id, name: artist.name, image: artist. image },
+params: { id: artist.id, name: artist.name, image: artist.image, listeners: artist.listeners, mbid: artist.mbid, url: artist.url },
 });
 
 return (
 <View>
 <FlatList
     data={artists}
-    keyExtractor={(item) => item.id. toString()}
+    keyExtractor={(item) => item.id.toString()}
 renderItem={({ item }) => (
     <TouchableOpacity
         testID={`artist-box-${item.name}`}
