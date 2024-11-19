@@ -23,6 +23,7 @@ const ArtistImage = ({ uri }: { uri: string }) => (
       borderRadius: 100,
       marginBottom: 20,
     }}
+
   />
 );
 
@@ -55,7 +56,7 @@ export default function ArtistDetailView() {
 
   return (
     <Container>
-      <ArtistImage uri={Array.isArray(image) ? image[0] : image} />
+      <ArtistImage uri={Array.isArray(image) ? image[0] : image } />
       <TextName>{name}</TextName>
       <TextDetail>ID: {id}</TextDetail>
       <TextDetail>Listeners: {listeners}</TextDetail>
